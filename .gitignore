@@ -1,0 +1,13 @@
+# 1. Downloaded Source Code
+linux/
+
+# 2. Build Artifacts
+build/
+
+# 3. Python Virtual Environment and Cache
+analyzer/venv/
+__pycache__/
+*.pyc
+
+# 4. Generated Analysis Outputs
+analyzer/output/
