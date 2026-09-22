@@ -178,12 +178,7 @@ def main():
     print(f"\n✅ Extraction complete!")
     print(f"  - 🔧 Found {len(funcs)} external functions -> {funcs_file}")
     print(f"  - 📦 Found {len(types)} external data types -> {types_file}")
-    print(f"  - 🏷️  Found {len(macros)} external macros -> {macros_file}")
-    
-    print("\nPreview of missing macros:")
-    for m in list(sorted(macros))[:10]:
-        print(f"  - {m}")
-    print("  - ...")
+    print(f"  - 🏷️ Found {len(macros)} external macros -> {macros_file}")
 
 if __name__ == "__main__":
     main()
