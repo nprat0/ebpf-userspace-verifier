@@ -7,6 +7,19 @@ The in-kernel eBPF verifier is constrained by strict resource limits, including 
 
 This project overcomes these limitations by extracting and compiling the original kernel verifier in a 1:1 ratio, explicitly avoiding any forks or manual modifications to the upstream Linux source code. Executing in userspace lifts memory and time restrictions, enabling deeper program analysis while allowing the use of standard userspace tooling (GDB, Valgrind, AFL/libFuzzer) to debug and fuzz the verifier itself.
 
+## Environment & Prerequisites
+This project is designed for **Ubuntu 24.04 (WSL2 or Native)**. Before initializing the project, ensure your host environment has the required compiler toolchains and BTF (BPF Type Format) utilities installed.
+
+```bash
+sudo apt update
+sudo apt install -y build-essential clang lld llvm \
+                    python3-venv python3-dev \
+                    dwarves libelf-dev zlib1g-dev
+```
+* **`clang` / `lld` / `llvm`**: The primary C compiler and linker toolchain used to extract AST dependencies and build the userspace binary.
+* **`dwarves`**: Provides `pahole`, required by the kernel to generate BTF type information.
+* **`libelf-dev` / `zlib1g-dev`**: Required C libraries to natively compile the local `bpftool` binary from the kernel source tree.
+
 ## Architecture
 To ensure the extraction is resilient to upstream kernel updates, the project avoids manual dependency tracking in favor of a compiler-driven automated pipeline:
 
