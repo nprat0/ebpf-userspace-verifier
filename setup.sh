@@ -46,6 +46,11 @@ make defconfig
 ./scripts/config --enable CONFIG_CGROUP_BPF
 ./scripts/config --enable CONFIG_NET
 
+# Resolve Debug Info dependencies to ensure BTF generation succeeds
+./scripts/config --disable CONFIG_DEBUG_INFO_NONE
+./scripts/config --enable CONFIG_DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT
+./scripts/config --enable CONFIG_DEBUG_INFO_BTF
+
 # Resolve dependencies and apply the new configuration
 make olddefconfig
 
